@@ -1,3 +1,10 @@
+'''
+Created on 23 mar. 2023
+
+@author: Guille
+@comment: gpt API integrated on python
+'''
+
 import os
 from twitch_bot import twitch_BOT
 
