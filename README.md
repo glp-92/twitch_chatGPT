@@ -1,29 +1,29 @@
 # Twitch ChatGPT BOT
 
-Este repositorio te permite asociar mediante la API de OpenAI un chatbot utilizable en un chat de un canal de Twitch.
+This repository allows you to associate a chatbot usable in a Twitch channel chat using the OpenAI API.
 
-## Versión actual de ChatGPT: gpt-3.5-turbo
+## Current version of ChatGPT in use: gpt-3.5-turbo
 
-### Requisitos previos:
-- Token de API OpenAI: Es necesario el registro en su plataforma: [https://platform.openai.com/signup](https://platform.openai.com/signup)
-- Token de Twitch: Es necesario para su uso por el IRC; requiere iniciar sesión con una cuenta de Twitch: [https://twitchtokengenerator.com/](https://twitchtokengenerator.com/)
+### Prerequisites:
+- OpenAI API Token: Registration on their platform is required [https://platform.openai.com/signup](https://platform.openai.com/signup)
+- Twitch Token: Required for use with IRC; requires logging in with a Twitch account [https://twitchtokengenerator.com/](https://twitchtokengenerator.com/)
 
-### Requisitos de ejecución:
-- Python 3.10 (incluye instrucción switch - case)
+### Execution Requirements:
+- Python 3.10 (includes switch - case instruction)
 
-### Variables de entorno
+### Environment Variables
 
 | VAR | VALUE | DESC |
 | --- | --- | --- |
-| GPT_ENDPOINT | https://api.openai.com/v1/chat/completions | Endpoint de API OpenAI |
-| GPT_TOKEN | Bearer xx | Token de OpenAI para cuenta registrada |
-| TWITCH_IRC_SERVER | irc.chat.twitch.tv | Url de IRC de Twitch |
-| TWITCH_IRC_PORT | 6667 | Puerto del IRC de Twitch |
-| TWITCH_IRC_NICKNAME | xx | Nick de la cuenta usada como bot |
-| TWITCH_TOKEN | oauth:xx | Token de la cuenta usada como bot |
-| CHANNEL_MONITORING | #xx | Nombre de canal a monitorizar precedido por '#' |
+| GPT_ENDPOINT | https://api.openai.com/v1/chat/completions | OpenAI API Endpoint |
+| GPT_TOKEN | Bearer xx | OpenAI Token for registered account |
+| TWITCH_IRC_SERVER | irc.chat.twitch.tv | Twitch IRC URL |
+| TWITCH_IRC_PORT | 6667 | Twitch IRC Port |
+| TWITCH_IRC_NICKNAME | xx | Nickname of the account used as a bot |
+| TWITCH_TOKEN | oauth:xx | Token of the account used as a bot |
+| CHANNEL_MONITORING | #xx | Channel name to monitor preceded by '#' |
 
-### Ejecución:
+### Exec:
 ``` 
 cd src/  
 python3 main.py
