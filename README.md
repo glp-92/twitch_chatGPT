@@ -18,6 +18,8 @@ This repository provides a Twitch chatbot that leverages the OpenAI API.
 
 ### Environment Variables:
 
+You need to create an `.env` file at the same level as the `.main` file that contains these variables:
+
 | Variable | Value | Description |
 | --- | --- | --- |
 | GPT_ENDPOINT | https://api.openai.com/v1/chat/completions | OpenAI API endpoint |
