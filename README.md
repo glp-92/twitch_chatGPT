@@ -48,9 +48,7 @@ The format to make prompts is the following:
 
 If there are no errors, the bot will answer the prompt quoting the transmitter.
 
-If you want to change the number of characters the GPT will answer, you can do it in the gpt.py file in the send_request function, where a limit of 150 characters is specified.
-
-`gpt.py`
+If you want to change the number of characters the GPT will answer, you can do it in the `gpt.py` file in the `send_request` function, where a limit of 150 characters is specified.
 ```
 def send_request(self, prompt, limit = 150):
 ```
