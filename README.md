@@ -30,7 +30,7 @@ You need to create an `.env` file at the same level as the `.main` file that con
 | TWITCH_TOKEN | oauth:xx | Token for the account used as a bot |
 | CHANNEL_MONITORING | #xx | Name of the channel to monitor, preceded by '#' |
 
-Consider using a library to encrypt these variables as `hashlib`
+Consider using a library to encrypt these variables.
 
 
 ### Execution:
