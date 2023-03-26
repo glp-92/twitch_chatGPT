@@ -29,12 +29,15 @@ class twitch_BOT():
         
         
     def connect_to_irc(self):
-        self.s.connect((self.irc_server, int(self.port)))
-        self.s.send(f"PASS {self.token}\n".encode('utf-8'))
-        self.s.send(f"NICK {self.nickname}\n".encode('utf-8'))
-        self.s.send(f"JOIN {self.channel_to_monitor}\n".encode('utf-8'))
-        print(f"Socket stablished with IRC:: {self.channel_to_monitor}")
-        #self.s.settimeout(5)
+        try:
+            self.s.connect((self.irc_server, int(self.port)))
+            self.s.send(f"PASS {self.token}\n".encode('utf-8'))
+            self.s.send(f"NICK {self.nickname}\n".encode('utf-8'))
+            self.s.send(f"JOIN {self.channel_to_monitor}\n".encode('utf-8'))
+            print(f"Socket stablished with IRC:: {self.channel_to_monitor}")
+            #self.s.settimeout(5)
+        except Exception as e:
+            print(f"Error stablishing socket with IRC:: {e}")
 
 
     def listen_irc(self):
@@ -51,8 +54,11 @@ class twitch_BOT():
                     print(f"Message from usr => {usr}: {msg_str}")
                     if "!chat" in msg_str:
                         response = f"@{usr}: "
-                        response += self.gpt_chat.send_request(msg_str.split("!chat")[-1])
-                        self.send_chat_message(response)
+                        try:
+                            response += self.gpt_chat.send_request(msg_str.split("!chat")[-1])
+                            success = self.send_chat_message(response)
+                        except Exception as e:
+                            print(f"Error sending prompt to GPT => {e}")
             return
 
         while True:
