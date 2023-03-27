@@ -6,7 +6,7 @@ Created on 13 jun. 2022
 '''
 
 
-import socket, time
+import socket, time, re
 from gpt import gpt
 
 
@@ -34,8 +34,8 @@ class twitch_BOT():
             self.s.send(f"PASS {self.token}\n".encode('utf-8'))
             self.s.send(f"NICK {self.nickname}\n".encode('utf-8'))
             self.s.send(f"JOIN {self.channel_to_monitor}\n".encode('utf-8'))
+            self.s.settimeout(1)
             print(f"Socket stablished with IRC:: {self.channel_to_monitor}")
-            #self.s.settimeout(5)
         except Exception as e:
             print(f"Error stablishing socket with IRC:: {e}")
 
@@ -51,11 +51,15 @@ class twitch_BOT():
                     usr_str, msg_str = irc_answer.split(text_to_capture)
                     _, usr = usr_str.split('@')
                     msg_str = msg_str[:-2]
+                    if not re.match(rb"^[a-zA-Z0-9 \xc3\xb1\xc3\x91?!+-]+$", msg_str.encode()): # Validating input to avoid code injection
+                        print(f"No answer will be provided, bad request")
+                        return
                     print(f"Message from usr => {usr}: {msg_str}")
                     if "!chat" in msg_str:
                         response = f"@{usr}: "
                         try:
                             response += self.gpt_chat.send_request(msg_str.split("!chat")[-1])
+                            print(response)
                             success = self.send_chat_message(response)
                         except Exception as e:
                             print(f"Error sending prompt to GPT => {e}")
@@ -63,7 +67,7 @@ class twitch_BOT():
 
         while True:
             try:
-                irc_answer = self.s.recv(2048).decode('utf-8')
+                irc_answer = self.s.recv(1024).decode('utf-8')
                 if irc_answer.startswith('PING'):
                     self.s.send("PONG\n".encode('utf-8'))
                 else:

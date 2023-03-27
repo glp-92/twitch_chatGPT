@@ -27,10 +27,10 @@ class gpt():
             req.add_header(header[0], header[1])
         payload = {
             "model": "gpt-3.5-turbo",
-            "messages": [{"role": "user", "content": f"{prompt}. Limita la respuesta a {limit} caracteres."}] 
+            "messages": [{"role": "user", "content": f"{prompt}. Intenta limitar la respuesta a {limit} caracteres."}] 
         }
         payload = json.dumps(payload)
         payload = payload.encode()
         r = request.urlopen(req, data = payload)
         content = json.loads((r.read()).decode('utf-8'))
-        return ((content["choices"][0]["message"]["content"])[2:]).replace("\n", " ")
+        return (content["choices"][0]["message"]["content"]).replace("\n", " ")
