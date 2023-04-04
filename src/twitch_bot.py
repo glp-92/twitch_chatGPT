@@ -34,7 +34,7 @@ class twitch_BOT():
             self.s.send(f"PASS {self.token}\n".encode('utf-8'))
             self.s.send(f"NICK {self.nickname}\n".encode('utf-8'))
             self.s.send(f"JOIN {self.channel_to_monitor}\n".encode('utf-8'))
-            self.s.settimeout(1)
+            #self.s.settimeout(1)
             print(f"Socket stablished with IRC:: {self.channel_to_monitor}")
         except Exception as e:
             print(f"Error stablishing socket with IRC:: {e}")

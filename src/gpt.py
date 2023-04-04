@@ -27,7 +27,7 @@ class gpt():
             req.add_header(header[0], header[1])
         payload = {
             "model": "gpt-3.5-turbo",
-            "messages": [{"role": "user", "content": f"{prompt}. Intenta limitar la respuesta a {limit} caracteres."}] 
+            "messages": [{"role": f"chatbot que limita sus respuestas a {limit} caracteres", "content": f"{prompt}"}] 
         }
         payload = json.dumps(payload)
         payload = payload.encode()
